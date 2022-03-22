@@ -172,5 +172,8 @@ Item {
                 //                thumbnail.imgPaths.splice(bottomthumbnaillistView.currentIndex-1,1);
             }
         }
+//        visible: fileControl.isCanDelete(source) ? true :false
+
+        enabled: fileControl.isCanDelete(source) ? true :false
     }
 }

@@ -165,9 +165,16 @@ void FileControl::copyImage(const QString &path)
 
 }
 
-bool FileControl::isCanRotate(const QString &path)
+bool FileControl::isRotatable(const QString &path)
 {
     bool bRet = false;
+    QString localPath = QUrl(path).toLocalFile();
+    QFileInfo info(localPath);
+    if (!info.isFile() || !info.exists() || !info.isWritable()) {
+        bRet = false;
+    } else {
+        bRet = LibUnionImage_NameSpace::isImageSupportRotate(localPath);
+    }
     return bRet;
 }
 
@@ -177,11 +184,33 @@ bool FileControl::isCanWrite(const QString &path)
     return bRet;
 }
 
-bool FileControl::isFileExist(const QString &path)
+bool FileControl::isCanDelete(const QString &path)
 {
     bool bRet = false;
-    imageViewerSpace::PathType type = LibUnionImage_NameSpace::getPathType(path);
+    bool isAlbum = false;
+    QString localPath = QUrl(path).toLocalFile();
+    QFileInfo info(localPath);
+    bool isWritable = info.isWritable() && QFileInfo(info.dir(), info.dir().path()).isWritable(); //是否可写
+    bool isReadable = info.isReadable() ; //是否可读
+    imageViewerSpace::PathType pathType = LibUnionImage_NameSpace::getPathType(localPath);
+    if ((imageViewerSpace::PathTypeAPPLE != pathType &&
+            imageViewerSpace::PathTypeSAFEBOX != pathType &&
+            imageViewerSpace::PathTypeRECYCLEBIN != pathType &&
+            imageViewerSpace::PathTypeMTP != pathType &&
+            imageViewerSpace::PathTypePTP != pathType &&
+            isWritable && isReadable) || (isAlbum && isWritable)) {
+        bRet = true;
+    } else {
+        bRet = false;
+    }
     return bRet;
+}
+
+
+bool FileControl::isFile(const QString &path)
+{
+    QString localPath = QUrl(path).toLocalFile();
+    return QFileInfo(localPath).isFile();
 }
 
 void FileControl::ocrImage(const QString &path)

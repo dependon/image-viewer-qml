@@ -36,7 +36,7 @@ file(GLOB_RECURSE SRCS
 # ADD EXE
 add_executable(${BIN_NAME} ${SRCS} ../${CMAKE_PROJECT_NAME}.qrc ${SRCS} ../res.qrc)
 
-target_link_libraries(${BIN_NAME} Qt5::Quick Qt5::Gui Qt5::Qml Qt5::Core Qt5::DBus Qt5::Sql Qt5::Concurrent Qt5::Svg GL pthread lept tesseract freeimage)
+target_link_libraries(${BIN_NAME} Qt5::Quick Qt5::Gui Qt5::Qml Qt5::Core Qt5::DBus Qt5::Sql Qt5::Concurrent Qt5::Svg GL pthread freeimage)
 
 install(TARGETS ${BIN_NAME} DESTINATION ${APP_BIN_INSTALL_DIR})
 

@@ -25,11 +25,13 @@ public:
 
     Q_INVOKABLE void copyImage(const QString &path);
 
-    Q_INVOKABLE bool isCanRotate(const QString &path);
+    Q_INVOKABLE bool isRotatable(const QString &path);
 
     Q_INVOKABLE bool isCanWrite(const QString &path);
 
-    Q_INVOKABLE bool isFileExist(const QString &path);
+    Q_INVOKABLE bool isCanDelete(const QString &path);
+
+    Q_INVOKABLE bool isFile(const QString &path);
 
     Q_INVOKABLE void ocrImage(const QString &path);
 
