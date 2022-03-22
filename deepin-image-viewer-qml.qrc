@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/MainStack.qml</file>
+        <file>qml/OpenImageWidget.qml</file>
+        <file>qml/ImageViewer.qml</file>
+        <file>qml/ThumbnailListView.qml</file>
+        <file>qml/FullThumbnail.qml</file>
+        <file>qml/ThumbnailButton.qml</file>
+        <file>qml/ListViewDelegate.qml</file>
+        <file>qml/GlobalVar.qml</file>
+    </qresource>
+</RCC>
