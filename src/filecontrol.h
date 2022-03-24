@@ -15,6 +15,8 @@ public:
 
     Q_INVOKABLE QString getDirPath(const QString &path);
     Q_INVOKABLE QStringList getDirImagePath(const QString &path);
+
+    Q_INVOKABLE QStringList removeList(const QStringList &pathlist, int index);
     Q_INVOKABLE bool isImage(const QString &path);
 
     Q_INVOKABLE void setWallpaper(const QString &imgPath);

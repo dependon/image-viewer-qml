@@ -116,8 +116,7 @@ Rectangle {
         MenuItem {
             text: "Delete"
             onTriggered: {
-            sourcePaths.remove(source)
-            fileControl.deleteImagePath(source)
+            thumbnailListView.deleteCurrentImage()
             }
         }
 
@@ -126,12 +125,16 @@ Rectangle {
 
         MenuItem {
             text: "Rotate counterclockwise"
-            onTriggered: {}
+            onTriggered: {
+            imageViewer.rotateImage(-90)
+            }
         }
 
         MenuItem {
             text: "Rotate clockwise"
-            onTriggered: {}
+            onTriggered: {
+            imageViewer.rotateImage(90)
+            }
         }
         MenuItem {
             text: "Show navigation window"

@@ -20,7 +20,26 @@ Item {
 //           bottomthumbnaillistView.forceActiveFocus()
 //        }
 //    }
+    function deleteCurrentImage(){
 
+        if (mainView.sourcePaths.length - 1 > bottomthumbnaillistView.currentIndex) {
+
+            bottomthumbnaillistView.currentIndex++
+            source = sourcePaths[bottomthumbnaillistView.currentIndex]
+            fileControl.deleteImagePath(sourcePaths[bottomthumbnaillistView.currentIndex-1])
+            sourcePaths = fileControl.removeList(sourcePaths,bottomthumbnaillistView.currentIndex-1)
+
+        }else if(mainView.sourcePaths.length - 1 == 0){
+            stackView.currentWidgetIndex=0
+            fileControl.deleteImagePath(sourcePaths[0])
+
+        }else{
+            bottomthumbnaillistView.currentIndex--
+            source = sourcePaths[bottomthumbnaillistView.currentIndex]
+            fileControl.deleteImagePath(sourcePaths[bottomthumbnaillistView.currentIndex+1])
+            sourcePaths = fileControl.removeList(sourcePaths,bottomthumbnaillistView.currentIndex+1)
+        }
+    }
 
     RowLayout {
         id: thumbnaillayout
@@ -32,11 +51,11 @@ Item {
         anchors.topMargin: (parent.height - height) / 2
 
 //        ThumbnailButton {
-//            img_src: "qrc:/res/dcc_back_36px.svg"
+//            icon.source: "qrc:/res/dcc_back_36px.svg"
 //            onClickedLeft: closeFullThumbnail()
 //        }
         ThumbnailButton {
-            img_src: "qrc:/res/dcc_previous_36px.svg"
+            icon.source: "qrc:/res/dcc_previous_36px.svg"
             onClickedLeft: {
                 if (bottomthumbnaillistView.currentIndex > 0) {
                     bottomthumbnaillistView.currentIndex--
@@ -47,7 +66,7 @@ Item {
             }
         }
         ThumbnailButton {
-            img_src: "qrc:/res/dcc_next_36px.svg"
+            icon.source: "qrc:/res/dcc_next_36px.svg"
             onClickedLeft: {
                 if (mainView.sourcePaths.length - 1 > bottomthumbnaillistView.currentIndex) {
                     bottomthumbnaillistView.currentIndex++
@@ -58,31 +77,33 @@ Item {
             }
         }
         ThumbnailButton {
-            img_src: "qrc:/res/dcc_11_36px.svg"
+            icon.source: "qrc:/res/dcc_11_36px.svg"
+
             onClickedLeft: {
                 imageViewer.fitImage()
             }
+
         }
         ThumbnailButton {
-            img_src: "qrc:/res/dcc_fit_36px.svg"
+            icon.source: "qrc:/res/dcc_fit_36px.svg"
             onClickedLeft: {
                 imageViewer.fitWindow()
             }
         }
         ThumbnailButton {
-            img_src: "qrc:/res/dcc_ocr_36px.svg"
+            icon.source: "qrc:/res/dcc_ocr_36px.svg"
             onClickedLeft: {
-
+                fileControl.ocrImage(source)
             }
         }
         ThumbnailButton {
-            img_src: "qrc:/res/dcc_left_36px.svg"
+            icon.source: "qrc:/res/dcc_left_36px.svg"
             onClickedLeft: {
                 imageViewer.rotateImage(-90)
             }
         }
         ThumbnailButton {
-            img_src: "qrc:/res/dcc_right_36px.svg"
+            icon.source: "qrc:/res/dcc_right_36px.svg"
             onClickedLeft: {
                 imageViewer.rotateImage(90)
             }
@@ -163,17 +184,15 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: (parent.height - height) / 2
 
-        img_src: "qrc:/res/dcc_delete_36px.svg"
+        icon.source: "qrc:/res/dcc_delete_36px.svg"
+        icon.color: enabled ? "red" :"ffffff"
         onClickedLeft: {
-            if (mainView.sourcePaths.length - 1 > bottomthumbnaillistView.currentIndex) {
-
-                //                bottomthumbnaillistView.currentIndex++
-                //                source = thumbnail.imgPaths[bottomthumbnaillistView.currentIndex]
-                //                thumbnail.imgPaths.splice(bottomthumbnaillistView.currentIndex-1,1);
-            }
+            deleteCurrentImage()
         }
 //        visible: fileControl.isCanDelete(source) ? true :false
 
         enabled: fileControl.isCanDelete(source) ? true :false
+
+        shortcut:  "Ctrl+O"
     }
 }

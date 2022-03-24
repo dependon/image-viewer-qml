@@ -31,6 +31,13 @@ Item {
 
 //            openFileBtn.visible = false
 
+
+            var test = fileDialog.fileUrls
+            console.log("test1:" + test)
+            test.splice(1,1)
+            console.log("test2:" + test)
+
+
         }
     }
 

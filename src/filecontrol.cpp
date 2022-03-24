@@ -69,6 +69,13 @@ QStringList FileControl::getDirImagePath(const QString &path)
     return image_list;
 }
 
+QStringList FileControl::removeList(const QStringList &pathlist, int index)
+{
+    QStringList list = pathlist;
+    list.removeAt(index);
+    return list;
+}
+
 bool FileControl::isImage(const QString &path)
 {
     bool bRet = false;

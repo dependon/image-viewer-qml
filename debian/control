@@ -1,4 +1,4 @@
-Source: dte-album
+Source: deepin-image-viewer-qml
 Section: admin
 Priority: optional
 Maintainer: Deepin Packages Builder <packages@deepin.com>
@@ -12,7 +12,9 @@ Build-Depends:
  qttools5-dev-tools,
  qtbase5-private-dev,
  libleptonica-dev,
- libtesseract-dev
+ libtesseract-dev,
+ libqt5svg5-dev,
+ libfreeimage-dev
 Standards-Version: 3.9.8
 Homepage: http://www.deepin.org
 
