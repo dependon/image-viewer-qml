@@ -5,21 +5,21 @@ import QtGraphicalEffects 1.0
 
 Item {
     property int currentIndex: 0
-//      property alias currentIndex :bottomthumbnaillistView.currentIndex
+    //      property alias currentIndex :bottomthumbnaillistView.currentIndex
 
     onCurrentIndexChanged: {
-       bottomthumbnaillistView.currentIndex = currentIndex
-       bottomthumbnaillistView.forceActiveFocus()
+        bottomthumbnaillistView.currentIndex = currentIndex
+        bottomthumbnaillistView.forceActiveFocus()
     }
 
-//    Timer{
-//        interval: 200
-//        running: true
-//        repeat: true
-//        onTriggered: {
-//           bottomthumbnaillistView.forceActiveFocus()
-//        }
-//    }
+    //    Timer{
+    //        interval: 200
+    //        running: true
+    //        repeat: true
+    //        onTriggered: {
+    //           bottomthumbnaillistView.forceActiveFocus()
+    //        }
+    //    }
     function deleteCurrentImage(){
 
         if (mainView.sourcePaths.length - 1 > bottomthumbnaillistView.currentIndex) {
@@ -41,6 +41,24 @@ Item {
         }
     }
 
+    function previous (){
+        if (bottomthumbnaillistView.currentIndex > 0) {
+            bottomthumbnaillistView.currentIndex--
+            source = mainView.sourcePaths[bottomthumbnaillistView.currentIndex]
+            imageViewer.index = currentIndex
+            bottomthumbnaillistView.forceActiveFocus()
+        }
+    }
+
+    function next (){
+        if (mainView.sourcePaths.length - 1 > bottomthumbnaillistView.currentIndex) {
+            bottomthumbnaillistView.currentIndex++
+            source = mainView.sourcePaths[bottomthumbnaillistView.currentIndex]
+            imageViewer.index = currentIndex
+            bottomthumbnaillistView.forceActiveFocus()
+        }
+    }
+
     RowLayout {
         id: thumbnaillayout
 
@@ -50,30 +68,29 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: (parent.height - height) / 2
 
-//        ThumbnailButton {
-//            icon.source: "qrc:/res/dcc_back_36px.svg"
-//            onClickedLeft: closeFullThumbnail()
-//        }
+        //        ThumbnailButton {
+        //            icon.source: "qrc:/res/dcc_back_36px.svg"
+        //            onClickedLeft: closeFullThumbnail()
+        //        }
         ThumbnailButton {
             icon.source: "qrc:/res/dcc_previous_36px.svg"
             onClickedLeft: {
-                if (bottomthumbnaillistView.currentIndex > 0) {
-                    bottomthumbnaillistView.currentIndex--
-                    source = mainView.sourcePaths[bottomthumbnaillistView.currentIndex]
-                    imageViewer.index = currentIndex
-                    bottomthumbnaillistView.forceActiveFocus()
-                }
+                previous();
             }
+            Shortcut{
+                sequence: "Left"
+                onActivated: previous();
+            }
+
         }
         ThumbnailButton {
             icon.source: "qrc:/res/dcc_next_36px.svg"
             onClickedLeft: {
-                if (mainView.sourcePaths.length - 1 > bottomthumbnaillistView.currentIndex) {
-                    bottomthumbnaillistView.currentIndex++
-                    source = mainView.sourcePaths[bottomthumbnaillistView.currentIndex]
-                    imageViewer.index = currentIndex
-                    bottomthumbnaillistView.forceActiveFocus()
-                }
+                next();
+            }
+            Shortcut{
+                sequence: "Right"
+                onActivated: next();
             }
         }
         ThumbnailButton {
@@ -169,11 +186,11 @@ Item {
             event.accepted = true
         }
 
-//        Component.onCompleted: {
-//            console.log("123456")
-//            bottomthumbnaillistView.currentIndex = 0
-//            bottomthumbnaillistView.forceActiveFocus();
-//        }
+        //        Component.onCompleted: {
+        //            console.log("123456")
+        //            bottomthumbnaillistView.currentIndex = 0
+        //            bottomthumbnaillistView.forceActiveFocus();
+        //        }
     }
     ThumbnailButton {
         id: deleteButton
@@ -193,9 +210,5 @@ Item {
 
         enabled: fileControl.isCanDelete(source) ? true :false
 
-//        Shortcut{
-//            sequence: "Delete"
-//            onActivated:deleteCurrentImage()
-//        }
     }
 }
