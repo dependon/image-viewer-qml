@@ -1,5 +1,5 @@
 import QtQuick 2.11
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
 import QtGraphicalEffects 1.0
 
@@ -189,10 +189,13 @@ Item {
         onClickedLeft: {
             deleteCurrentImage()
         }
-//        visible: fileControl.isCanDelete(source) ? true :false
+        //        visible: fileControl.isCanDelete(source) ? true :false
 
         enabled: fileControl.isCanDelete(source) ? true :false
 
-//        shortcut:  "Ctrl+O"
+//        Shortcut{
+//            sequence: "Delete"
+//            onActivated:deleteCurrentImage()
+//        }
     }
 }

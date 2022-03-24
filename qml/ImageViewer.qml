@@ -1,7 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Window 2.11
 import QtQuick.Controls 2.4
-
+import QtQuick.Controls 1.4
 Rectangle {
 
     // Indicates the minimum number of zooms
@@ -74,7 +74,7 @@ Rectangle {
 
         MenuItem {
             text: "Fullscreen"
-            //            shortcut: "Ctrl+X"
+
             onTriggered: {}
         }
 
@@ -85,6 +85,7 @@ Rectangle {
 
         MenuItem {
             text: "Print"
+
             onTriggered: {}
         }
 
@@ -115,6 +116,14 @@ Rectangle {
 
         MenuItem {
             text: "Delete"
+            shortcut:"Delete"
+//            Shortcut{
+//                sequence: "Delete"
+//                onActivated:{
+//                    thumbnailListView.deleteCurrentImage()
+//                }
+//            }
+
             onTriggered: {
             thumbnailListView.deleteCurrentImage()
             }
@@ -155,6 +164,7 @@ Rectangle {
 
         MenuItem {
             text: "Display in file manager"
+
             onTriggered: {
             fileControl.displayinFileManager(source)
             }
