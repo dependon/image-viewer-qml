@@ -193,6 +193,6 @@ Item {
 
         enabled: fileControl.isCanDelete(source) ? true :false
 
-        shortcut:  "Ctrl+O"
+//        shortcut:  "Ctrl+O"
     }
 }
