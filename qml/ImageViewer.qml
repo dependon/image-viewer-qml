@@ -74,12 +74,13 @@ Rectangle {
 
         MenuItem {
             text: "Fullscreen"
-
+            shortcut: "F11"
             onTriggered: {}
         }
 
         MenuItem {
             text: "Exit fullscreen"
+            shortcut: "Esc"
             onTriggered: {}
         }
 
@@ -91,6 +92,7 @@ Rectangle {
 
         MenuItem {
             text: "Extract text"
+            shortcut: "Alt+O"
             onTriggered: {
             fileControl.ocrImage(source)
             }
@@ -98,6 +100,7 @@ Rectangle {
 
         MenuItem {
             text: "Slide show"
+            shortcut: "F5"
             onTriggered: {}
         }
 
@@ -105,11 +108,13 @@ Rectangle {
         MenuSeparator { }
         MenuItem {
             text: "Copy"
+            shortcut: "Ctrl+C"
             onTriggered: {}
         }
 
         MenuItem {
             text: "Rename"
+            shortcut: "F2"
             onTriggered: {}
         }
 
@@ -133,18 +138,22 @@ Rectangle {
         MenuSeparator { }
 
         MenuItem {
+            text: "Rotate clockwise"
+            shortcut: "Ctrl+R"
+            onTriggered: {
+            imageViewer.rotateImage(90)
+            }
+        }
+
+        MenuItem {
             text: "Rotate counterclockwise"
+            shortcut: "Ctrl+Shift+R"
             onTriggered: {
             imageViewer.rotateImage(-90)
             }
         }
 
-        MenuItem {
-            text: "Rotate clockwise"
-            onTriggered: {
-            imageViewer.rotateImage(90)
-            }
-        }
+
         MenuItem {
             text: "Show navigation window"
             onTriggered: {}

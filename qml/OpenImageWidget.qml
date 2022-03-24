@@ -19,7 +19,7 @@ Item {
         title: qsTr("Select pictures")
         folder: shortcuts.pictures
         selectMultiple: true
-        nameFilters: ["Image files (*.jpg *.png *.bmp)"]
+        nameFilters: ["Image files (*.jpg *.png *.bmp *gif)"]
         onAccepted: {
             mainView.source = fileDialog.fileUrls[0]
 
